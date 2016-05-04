@@ -48,8 +48,8 @@ class AsynchronousMailMessageBuilder {
 
     void init(config) {
         message = new AsynchronousMailMessage()
-        message.attemptInterval = config?.asynchronous?.mail?.default?.attempt?.interval ?: 300000l
-        message.maxAttemptsCount = config?.asynchronous?.mail?.default?.max?.attempts?.count ?: 1
+        message.attemptInterval = config?.asynchronous?.mail?.ccdefault?.attempt?.interval ?: 300000l
+        message.maxAttemptsCount = config?.asynchronous?.mail?.ccdefault?.max?.attempts?.count ?: 1
         message.markDelete = config?.asynchronous?.mail?.clear?.after?.sent ?: false
     }
 

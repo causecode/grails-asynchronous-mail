@@ -1,0 +1,56 @@
+---
+grails:
+  profile: "web-plugin"
+  codegen:
+    defaultPackage: "grails.plugin.asyncmail"
+info:
+  app:
+    name: "@info.app.name@"
+    version: "@info.app.version@"
+    grailsVersion: "@info.app.grailsVersion@"
+spring:
+  groovy:
+    template:
+      check-template-location: false
+
+---
+asynchronous:
+    mail:
+        ccdefault:
+            attempt:
+                interval: 300000l
+            max:
+                attempts:
+                    count: 1
+        send:
+            repeat:
+                interval: 60000l
+            immediately: true
+        expired:
+            collector:
+                repeat:
+                    interval: 607000l
+        messages:
+            at:
+                once: 100
+        clear:
+            after:
+                sent: false
+        disable: false
+        useFlushOnSave: true
+        persistence:
+            provider: "hibernate4"
+        newSessionOnImmediateSend: false
+
+---
+environments:
+  test:
+    dataSource:
+      pooled: true
+      jmxExport: true
+      driverClassName: "org.h2.Driver"
+      username: "sa"
+      password: ""
+      dbCreate: "update"
+      url: "jdbc:h2:mem:testDb;MVCC:true;LOCK_TIMEOUT:10000;DB_CLOSE_ON_EXIT:false"
+    quartz.jdbcStore: false
