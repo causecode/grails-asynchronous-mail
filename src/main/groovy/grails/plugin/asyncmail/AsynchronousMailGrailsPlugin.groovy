@@ -54,6 +54,7 @@ class AsynchronousMailGrailsPlugin extends Plugin {
      */
     def startJobs(applicationContext) {
         def asyncMailConfig = grailsApplication.config.asynchronous.mail
+        return
         if (!asyncMailConfig.disable) {
             JobManagerService jobManagerService = applicationContext.jobManagerService
             Scheduler quartzScheduler = applicationContext.quartzScheduler
