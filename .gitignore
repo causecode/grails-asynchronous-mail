@@ -26,3 +26,4 @@ plugin.xml
 .classpath
 .project
 test/reports
+bin/**
