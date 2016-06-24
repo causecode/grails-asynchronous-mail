@@ -9,13 +9,11 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // Uncomment while publishing 
-        //classpath "com.netflix.nebula:nebula-publishing-plugin:4.4.4"
+        classpath "com.netflix.nebula:nebula-publishing-plugin:4.4.4"
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
     }
 }
 
-/*
 plugins {
     id 'nebula.maven-publish' version '4.4.4'
 }
@@ -25,6 +23,10 @@ project.publishing {
         mavenJava(MavenPublication) {
             from project.components.java
             println "Removing dependencies without a version"
+
+            groupId "com.causecode.plugins"
+            artifactId "asynchronous-mail"
+            version "2.1-RC2"
 
             pom.withXml {
                 def pomNode = asNode()
@@ -40,14 +42,13 @@ project.publishing {
     repositories {
         maven {
             credentials {
-                username mavenUser
-                password mavenPassword
+                // username mavenUser
+                // password mavenPassword
             }
             url "http://maven-upload.causecode.com"
         }
     }
 }
-*/
 
 version "2.0.0.RC2"
 group "org.grails.plugins"
