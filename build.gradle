@@ -42,16 +42,16 @@ project.publishing {
     repositories {
         maven {
             credentials {
-                // username mavenUser
-                // password mavenPassword
+                username mavenPublishUser
+                password mavenPublishPassword
             }
             url "http://maven-upload.causecode.com"
         }
     }
 }
 
-version "2.0.0.RC2"
-group "org.grails.plugins"
+version "2.1"
+group "com.causecode.plugins"
 
 apply plugin: 'idea'
 apply plugin:"org.grails.grails-plugin"
