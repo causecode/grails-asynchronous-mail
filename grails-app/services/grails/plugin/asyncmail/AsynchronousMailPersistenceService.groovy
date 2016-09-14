@@ -71,6 +71,6 @@ class AsynchronousMailPersistenceService implements GrailsConfigurationAware {
                 )
             }
         }
-        log.trace("${count} expired messages were updated.")
+        log.debug("${count} expired messages were updated.")
     }
 }

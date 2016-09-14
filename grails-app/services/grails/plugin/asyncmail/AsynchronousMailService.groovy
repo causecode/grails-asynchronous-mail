@@ -56,7 +56,7 @@ class AsynchronousMailService implements GrailsConfigurationAware {
 
         // Start job immediately
         if (immediately) {
-            log.trace("Start send job immediately.")
+            log.debug("Start send job immediately.")
             sendImmediately()
         }
 

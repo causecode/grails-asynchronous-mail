@@ -26,7 +26,7 @@ project.publishing {
 
             groupId "com.causecode.plugins"
             artifactId "asynchronous-mail"
-            version "2.3"
+            version "2.3.1"
 
             pom.withXml {
                 def pomNode = asNode()
@@ -50,7 +50,7 @@ project.publishing {
     }
 }
 
-version "2.3"
+version "2.3.1"
 group "com.causecode.plugins"
 
 apply plugin: 'idea'
