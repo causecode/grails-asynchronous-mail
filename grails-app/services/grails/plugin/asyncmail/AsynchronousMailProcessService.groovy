@@ -40,7 +40,7 @@ class AsynchronousMailProcessService implements GrailsConfigurationAware {
         boolean useFlushOnSave = configuration.asynchronous.mail.useFlushOnSave
 
         def message = asynchronousMailPersistenceService.getMessage(messageId)
-        log.trace("Found a message: " + message.toString())
+        log.debug("Found a message: " + message.toString())
 
         Date now = new Date()
         Date attemptDate = new Date(now.getTime() - message.attemptInterval)
@@ -55,11 +55,11 @@ class AsynchronousMailProcessService implements GrailsConfigurationAware {
 
             // Attempt to send
             try {
-                log.trace("Attempt to send the message with id=${message.id}.")
+                log.debug("Attempt to send the message with id=${message.id}.")
                 asynchronousMailSendService.send(message)
                 message.sentDate = now
                 message.status = MessageStatus.SENT
-                log.trace("The message with id=${message.id} was sent successfully.")
+                log.debug("The message with id=${message.id} was sent successfully.")
             } catch (MailException e) {
                 log.warn("Attempt to send the message with id=${message.id} was failed.", e)
                 canAttempt = message.attemptsCount < message.maxAttemptsCount
@@ -72,6 +72,7 @@ class AsynchronousMailProcessService implements GrailsConfigurationAware {
                     throw e
                 }
             } finally {
+                log.debug "Saving the message $message"
                 asynchronousMailPersistenceService.save(message, useFlushOnSave)
             }
 
@@ -79,7 +80,7 @@ class AsynchronousMailProcessService implements GrailsConfigurationAware {
             if (message.hasSentStatus() && message.markDelete) {
                 long id = message.id
                 asynchronousMailPersistenceService.delete(message);
-                log.trace("The message with id=${id} was deleted.")
+                log.debug("The message with id=${id} was deleted.")
             }
         }
     }
